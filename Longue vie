@@ -1,0 +1,957 @@
+```html
+<!DOCTYPE html>
+<html lang="fr" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Longue Vie Contact - Fruits Découpés & Vitalité</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#f2f9f1',
+                            100: '#e1f2dd',
+                            500: '#10b981', /* Emerald */
+                            600: '#059669',
+                            700: '#047857',
+                            800: '#065f46',
+                            900: '#064e3b',
+                        },
+                        sun: {
+                            50: '#fffbeb',
+                            400: '#fbbf24',
+                            500: '#f59e0b',
+                            600: '#d97706',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                        serif: ['"Playfair Display"', 'serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Custom smooth transition and scrollbar styling */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f5f5f4;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #c2c2c0;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #a8a8a6;
+        }
+    </style>
+</head>
+<body class="bg-[#fcfbf9] text-stone-800 font-sans antialiased">
+
+    <!-- Top Info Bar -->
+    <div class="bg-brand-900 text-brand-50 py-2.5 px-4 text-center text-xs md:text-sm font-medium tracking-wide flex flex-col md:flex-row justify-center items-center gap-2 z-50 relative">
+        <span>🌱 Carence en vitamines ? Offrez une cure de vie à vos cellules !</span>
+        <span class="hidden md:inline">|</span>
+        <a href="tel:+2250101878025" class="hover:underline flex items-center gap-1 font-bold">
+            <svg class="w-4 h-4 text-sun-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.94.725l.548 2.2a1 1 0 01-.321.988l-1.305.98a10.582 10.582 0 004.872 4.872l.98-1.305a1 1 0 01.98-.321l2.2.548a1 1 0 01.725.94V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg>
+            Service Client Abidjan : +225 01 01 87 80 25
+        </a>
+    </div>
+
+    <!-- Navigation Header -->
+    <header class="sticky top-0 bg-[#fcfbf9]/95 backdrop-blur-md shadow-sm z-40 transition-all duration-300 border-b border-stone-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <!-- Brand Logo -->
+            <a href="#" class="flex items-center gap-3 group">
+                <div class="w-12 h-12 rounded-full bg-gradient-to-tr from-brand-600 to-sun-500 flex items-center justify-center shadow-md shadow-brand-900/10 transition-transform group-hover:scale-105">
+                    <span class="text-white font-serif font-black text-2xl">L</span>
+                </div>
+                <div>
+                    <span class="block text-xl font-extrabold tracking-tight text-stone-900 font-serif leading-tight">Longue Vie</span>
+                    <span class="block text-xs font-semibold text-brand-700 tracking-wider uppercase">Contact • Fraîcheur</span>
+                </div>
+            </a>
+
+            <!-- Desktop Menu -->
+            <nav class="hidden md:flex items-center gap-8">
+                <a href="#concept" class="text-stone-600 hover:text-brand-700 font-medium transition-colors">Notre Concept</a>
+                <a href="#produits" class="text-stone-600 hover:text-brand-700 font-medium transition-colors">Nos Salades de Fruits</a>
+                <a href="#bienfaits" class="text-stone-600 hover:text-brand-700 font-medium transition-colors">Santé & Nutriments</a>
+                <a href="#contact" class="text-stone-600 hover:text-brand-700 font-medium transition-colors">Commander</a>
+            </nav>
+
+            <!-- Action Area / Cart -->
+            <div class="flex items-center gap-4">
+                <!-- Cart Trigger Button -->
+                <button onclick="toggleCart()" class="relative p-2.5 rounded-full hover:bg-stone-100 transition-colors focus:outline-none focus:ring-2 focus:ring-brand-500" aria-label="Voir le panier">
+                    <svg class="w-6 h-6 text-stone-800" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path>
+                    </svg>
+                    <span id="cart-badge" class="absolute top-1 right-1 bg-sun-500 text-white font-extrabold text-[10px] w-5.5 h-5.5 rounded-full flex items-center justify-center border-2 border-[#fcfbf9] scale-100 transition-transform hidden">0</span>
+                </button>
+
+                <!-- Call to Action -->
+                <a href="tel:+2250101878025" class="hidden lg:flex items-center gap-2 bg-brand-700 hover:bg-brand-800 text-white font-bold px-5 py-2.5 rounded-full transition-all shadow-md shadow-brand-700/10 hover:shadow-lg hover:shadow-brand-700/20">
+                    <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.3 11.3 0 005.455 5.455l.773-1.548a1 1 0 011.06-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-1C7.79 18 2 12.21 2 6V3z"></path></svg>
+                    <span>+225 01 01 87 80 25</span>
+                </a>
+
+                <!-- Mobile Menu Trigger -->
+                <button onclick="toggleMobileMenu()" class="md:hidden p-2 rounded-lg hover:bg-stone-100 transition-colors">
+                    <svg class="w-6 h-6 text-stone-800" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Mobile Menu Overlay -->
+    <div id="mobile-menu" class="fixed inset-0 bg-stone-900/60 z-50 hidden transition-opacity duration-300">
+        <div class="fixed right-0 top-0 bottom-0 w-4/5 max-w-sm bg-[#fcfbf9] p-6 shadow-2xl flex flex-col justify-between">
+            <div>
+                <div class="flex items-center justify-between mb-8">
+                    <span class="text-lg font-bold font-serif text-stone-900">Menu principal</span>
+                    <button onclick="toggleMobileMenu()" class="p-2 rounded-lg hover:bg-stone-100">
+                        <svg class="w-6 h-6 text-stone-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                    </button>
+                </div>
+                <nav class="flex flex-col gap-5">
+                    <a href="#concept" onclick="toggleMobileMenu()" class="text-xl font-semibold text-stone-800 hover:text-brand-700">Le Concept Santé</a>
+                    <a href="#produits" onclick="toggleMobileMenu()" class="text-xl font-semibold text-stone-800 hover:text-brand-700">Nos Fruits Découpés</a>
+                    <a href="#bienfaits" onclick="toggleMobileMenu()" class="text-xl font-semibold text-stone-800 hover:text-brand-700">Pourquoi l'Organique ?</a>
+                    <a href="#contact" onclick="toggleMobileMenu()" class="text-xl font-semibold text-stone-800 hover:text-brand-700">Nous Contacter</a>
+                </nav>
+            </div>
+            
+            <div class="border-t border-stone-200 pt-6">
+                <p class="text-xs text-stone-500 mb-4">Commandez directement par téléphone ou WhatsApp :</p>
+                <a href="tel:+2250101878025" class="flex items-center justify-center gap-3 bg-brand-700 text-white font-bold py-3.5 rounded-xl mb-3 shadow-md">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.94.725l.548 2.2a1 1 0 01-.321.988l-1.305.98a10.582 10.582 0 004.872 4.872l.98-1.305a1 1 0 01.98-.321l2.2.548a1 1 0 01.725.94V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg>
+                    <span>+225 01 01 87 80 25</span>
+                </a>
+                <a href="https://wa.me/2250101878025" target="_blank" class="flex items-center justify-center gap-3 bg-emerald-600 text-white font-bold py-3.5 rounded-xl shadow-md">
+                    <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M12.012 2c-5.506 0-9.989 4.478-9.99 9.984a9.96 9.96 0 001.335 4.963L2 22l5.233-1.372a9.912 9.912 0 004.776 1.218h.004c5.505 0 9.988-4.478 9.989-9.984 0-2.669-1.037-5.176-2.922-7.062A9.925 9.925 0 0012.012 2zm5.835 14.165c-.32.451-1.114.828-1.53 1.01-.383.167-.887.311-2.587-.393a10.637 10.637 0 01-4.542-4.014c-.604-.817-1.01-1.815-1.01-2.86 0-1.745.915-2.6 1.246-2.922.25-.245.5-.327.705-.327.167 0 .333.008.479.015.158.007.366-.06.574.442.217.525.74 1.807.807 1.94.067.133.108.291.017.474-.092.183-.175.291-.3.441-.125.15-.267.333-.383.449-.133.133-.275.275-.117.55.159.275.708 1.166 1.517 1.883.633.558 1.166.733 1.483.875.316.141.5.116.683-.092.183-.208.79-.916.999-1.233.208-.316.416-.266.7-.158.283.108 1.8.85 2.108.999.308.15.516.225.59.35.075.125.075.725-.245 1.175z"></path></svg>
+                    <span>Commander via WhatsApp</span>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="relative overflow-hidden pt-10 pb-20 md:py-28 lg:py-36 bg-gradient-to-br from-[#fbfaf6] via-[#f7f5ec] to-[#eef3eb]">
+        <!-- Abstract Shapes -->
+        <div class="absolute top-1/4 -left-32 w-96 h-96 bg-brand-100/40 rounded-full blur-3xl -z-10"></div>
+        <div class="absolute bottom-10 right-0 w-80 h-80 bg-sun-50 rounded-full blur-3xl -z-10"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                <!-- Hero Left Content -->
+                <div class="lg:col-span-7 space-y-8 text-center lg:text-left">
+                    <div class="inline-flex items-center gap-2 px-3 py-1.5 bg-brand-50 border border-brand-200 rounded-full text-brand-800 text-sm font-semibold tracking-wide shadow-sm">
+                        <span class="flex h-2 w-2 relative">
+                          <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand-400 opacity-75"></span>
+                          <span class="relative inline-flex rounded-full h-2 w-2 bg-brand-500"></span>
+                        </span>
+                        <span>Fraîchement découpés • 100% Naturels</span>
+                    </div>
+
+                    <h1 class="text-4xl sm:text-5xl md:text-6xl font-black font-serif tracking-tight text-stone-900 leading-[1.1]">
+                        Remplacez le raffiné par le <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-700 to-brand-500">Vivant & Frais</span>
+                    </h1>
+
+                    <p class="text-lg md:text-xl text-stone-600 max-w-2xl mx-auto lg:mx-0 leading-relaxed font-light">
+                        Les aliments transformés épuisent vos ressources en vitamines vitales. Nos barquettes de fruits locaux découpés sont votre dose quotidienne de micro-nutriments vivants pour stimuler votre système immunitaire.
+                    </p>
+
+                    <!-- CTAs -->
+                    <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-2">
+                        <a href="#produits" class="w-full sm:w-auto text-center bg-brand-700 hover:bg-brand-800 text-white font-extrabold px-8 py-4 rounded-2xl shadow-lg shadow-brand-700/20 transition-all hover:scale-[1.02] focus:outline-none focus:ring-4 focus:ring-brand-200">
+                            Faire mon plein de Vitamines
+                        </a>
+                        <a href="tel:+2250101878025" class="w-full sm:w-auto flex items-center justify-center gap-2.5 bg-white border-2 border-stone-200 hover:border-brand-500 hover:bg-stone-50 text-stone-800 font-extrabold px-8 py-4 rounded-2xl transition-all focus:outline-none">
+                            <svg class="w-5 h-5 text-brand-700" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.94.725l.548 2.2a1 1 0 01-.321.988l-1.305.98a10.582 10.582 0 004.872 4.872l.98-1.305a1 1 0 01.98-.321l2.2.548a1 1 0 01.725.94V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg>
+                            <span>Appeler : 01 01 87 80 25</span>
+                        </a>
+                    </div>
+
+                    <!-- Client Trust Badges -->
+                    <div class="pt-6 grid grid-cols-3 gap-4 border-t border-stone-200/60 max-w-lg mx-auto lg:mx-0">
+                        <div>
+                            <span class="block text-2xl font-extrabold text-stone-900 font-serif">0%</span>
+                            <span class="text-xs text-stone-500 font-medium uppercase tracking-wider">Conservateur</span>
+                        </div>
+                        <div class="border-x border-stone-200 px-2">
+                            <span class="block text-2xl font-extrabold text-stone-900 font-serif">100%</span>
+                            <span class="text-xs text-stone-500 font-medium uppercase tracking-wider">Vitamines bio</span>
+                        </div>
+                        <div>
+                            <span class="block text-2xl font-extrabold text-stone-900 font-serif">&lt; 30min</span>
+                            <span class="text-xs text-stone-500 font-medium uppercase tracking-wider">Livraison fraîche</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Hero Right Graphic (Fruit Bowl SVG Representation) -->
+                <div class="lg:col-span-5 relative flex justify-center">
+                    <div class="relative w-72 h-72 sm:w-96 sm:h-96 md:w-[450px] md:h-[450px] rounded-3xl bg-gradient-to-tr from-brand-100 to-sun-100 shadow-2xl flex items-center justify-center p-8 overflow-hidden group">
+                        <!-- Custom dynamic graphic -->
+                        <svg class="w-full h-full text-brand-600 drop-shadow-xl animate-pulse" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg" style="animation-duration: 4s;">
+                            <!-- Bowl outline -->
+                            <path d="M20 100 C20 160, 180 160, 180 100" stroke="currentColor" stroke-width="10" stroke-linecap="round" fill="#ffffff" />
+                            <!-- Watermelon slices / Fruits stacked in bowl -->
+                            <path d="M40 95 C55 45, 145 45, 160 95 Z" fill="#f43f5e" /> <!-- Red watermelon slice -->
+                            <circle cx="65" cy="80" r="4" fill="#1c1917" />
+                            <circle cx="100" cy="70" r="4" fill="#1c1917" />
+                            <circle cx="135" cy="80" r="4" fill="#1c1917" />
+                            <!-- Pineapple/Mango wedges -->
+                            <path d="M70 100 L95 125 L120 100 Z" fill="#fbbf24" /> <!-- Yellow chunk -->
+                            <path d="M110 105 L130 125 L150 105 Z" fill="#f97316" /> <!-- Orange chunk -->
+                            <circle cx="50" cy="115" r="12" fill="#22c55e" /> <!-- Kiwi/lime slice -->
+                            <circle cx="50" cy="115" r="7" fill="#ffffff" />
+                        </svg>
+                        
+                        <!-- Floating Badge -->
+                        <div class="absolute bottom-6 left-6 right-6 bg-white/90 backdrop-blur-md p-4 rounded-2xl shadow-lg border border-white flex items-center gap-3">
+                            <span class="text-3xl">🍊</span>
+                            <div>
+                                <h4 class="font-bold text-stone-900 text-sm">Vitalité Immédiate</h4>
+                                <p class="text-xs text-stone-600">Découpé juste avant la livraison.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Concept Section / Education on Health -->
+    <section id="concept" class="py-20 md:py-28 bg-white border-y border-stone-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="text-xs font-bold tracking-widest text-brand-700 uppercase mb-3">La vérité scientifique</h2>
+                <p class="text-3xl md:text-4xl font-serif font-bold text-stone-900">
+                    Aliments Transformés vs Nutriments Vivants
+                </p>
+                <div class="h-1.5 w-20 bg-brand-500 mx-auto mt-4 rounded-full"></div>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-stretch">
+                <!-- Processed Foods Pitfall Card -->
+                <div class="bg-red-50/50 rounded-3xl p-8 md:p-12 border border-red-100 flex flex-col justify-between">
+                    <div>
+                        <div class="w-14 h-14 rounded-2xl bg-red-100 text-red-600 flex items-center justify-center text-2xl mb-6">
+                            ❌
+                        </div>
+                        <h3 class="text-2xl font-bold font-serif text-stone-900 mb-4">Le Danger Invisible des Produits Transformés</h3>
+                        <p class="text-stone-600 leading-relaxed mb-6">
+                            Les procédés industriels, le raffinage agressif et les agents de conservation détruisent la majorité des micronutriments fragiles (Vitamines C, B, antioxydants). Résultat : vous vous sentez rassasié mais biologiquement carencé.
+                        </p>
+                        <ul class="space-y-3.5">
+                            <li class="flex items-start gap-3 text-stone-700">
+                                <span class="text-red-500 font-bold text-lg">↓</span>
+                                <span>Perte d’énergie globale et fatigue chronique injustifiée.</span>
+                            </li>
+                            <li class="flex items-start gap-3 text-stone-700">
+                                <span class="text-red-500 font-bold text-lg">↓</span>
+                                <span>Affaiblissement du système immunitaire naturel.</span>
+                            </li>
+                            <li class="flex items-start gap-3 text-stone-700">
+                                <span class="text-red-500 font-bold text-lg">↓</span>
+                                <span>Vieillissement prématuré des cellules de l'organisme.</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="mt-8 pt-6 border-t border-red-200/50">
+                        <span class="text-xs font-semibold text-red-700 tracking-wider uppercase">Carence Micronutritionnelle avérée</span>
+                    </div>
+                </div>
+
+                <!-- Live Fruits Cure Card -->
+                <div class="bg-brand-50/50 rounded-3xl p-8 md:p-12 border border-brand-100 flex flex-col justify-between">
+                    <div>
+                        <div class="w-14 h-14 rounded-2xl bg-brand-100 text-brand-700 flex items-center justify-center text-2xl mb-6">
+                            ✅
+                        </div>
+                        <h3 class="text-2xl font-bold font-serif text-stone-900 mb-4">La Puissance Active de "Longue Vie"</h3>
+                        <p class="text-stone-600 leading-relaxed mb-6">
+                            Nous sélectionnons les meilleurs fruits tropicaux d'Abidjan, cueillis à parfaite maturité et découpés le matin même. Sans sucre ajouté, sans pasteurisation, vous ingérez un flot vivant de nutriments immédiatement biodisponibles.
+                        </p>
+                        <ul class="space-y-3.5">
+                            <li class="flex items-start gap-3 text-stone-700">
+                                <span class="text-brand-600 font-bold text-lg">✓</span>
+                                <span>Vitamines préservées à 100% grâce à une découpe instantanée.</span>
+                            </li>
+                            <li class="flex items-start gap-3 text-stone-700">
+                                <span class="text-brand-600 font-bold text-lg">✓</span>
+                                <span>Hydratation profonde de l'organisme via de l'eau végétale pure.</span>
+                            </li>
+                            <li class="flex items-start gap-3 text-stone-700">
+                                <span class="text-brand-600 font-bold text-lg">✓</span>
+                                <span>Régulation digestive naturelle par des fibres saines.</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="mt-8 pt-6 border-t border-brand-200/50">
+                        <span class="text-xs font-semibold text-brand-700 tracking-wider uppercase">Nutriments de défense active</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Products / Shop Section -->
+    <section id="produits" class="py-20 md:py-28 bg-[#faf9f5]">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="text-xs font-bold tracking-widest text-brand-700 uppercase mb-3">Notre Collection Fraîcheur</h2>
+                <p class="text-3xl md:text-4xl font-serif font-bold text-stone-900">
+                    Commandez Vos Barquettes de Vitalité
+                </p>
+                <p class="text-stone-600 mt-4">
+                    Toutes nos compositions sont découpées de manière hygiénique et présentées dans des contenants hermétiques, prêts à consommer au bureau, à domicile ou à la salle de sport.
+                </p>
+                <div class="h-1.5 w-20 bg-brand-500 mx-auto mt-4 rounded-full"></div>
+            </div>
+
+            <!-- Product Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                
+                <!-- Product Card 1 -->
+                <div class="bg-white rounded-3xl overflow-hidden border border-stone-200/60 shadow-md hover:shadow-xl transition-all duration-300 flex flex-col justify-between group">
+                    <div class="relative bg-gradient-to-br from-amber-100 to-orange-200 h-52 flex items-center justify-center p-6">
+                        <span class="text-7xl group-hover:scale-110 transition-transform duration-300">🍍🥭</span>
+                        <div class="absolute top-4 left-4 bg-white/90 backdrop-blur-sm text-brand-800 font-extrabold text-[11px] uppercase tracking-wider py-1 px-3 rounded-full shadow-sm">
+                            Booster Énergie
+                        </div>
+                    </div>
+                    <div class="p-6 flex-1 flex flex-col justify-between">
+                        <div>
+                            <h3 class="text-xl font-bold font-serif text-stone-900 mb-2">Mélange Énergisant Ivoirien</h3>
+                            <p class="text-xs text-brand-700 font-semibold mb-3 flex items-center gap-1">
+                                🧪 Vitamine C, B6 & Potassium
+                            </p>
+                            <p class="text-sm text-stone-600 leading-relaxed mb-4">
+                                Une base de mangue mûre juteuse, ananas doux locaux et morceaux de papaye douce. Le parfait encas pour vaincre le coup de barre de 10h.
+                            </p>
+                        </div>
+                        <div>
+                            <div class="flex items-center justify-between mb-4">
+                                <span class="text-stone-500 text-xs">Moyenne (500g)</span>
+                                <span class="text-xl font-black text-stone-950">2 500 FCFA</span>
+                            </div>
+                            <button onclick="addToCart('Mélange Énergisant Ivoirien', 2500, '🍍🥭')" class="w-full bg-brand-700 hover:bg-brand-800 text-white font-bold py-3 rounded-xl transition-colors flex items-center justify-center gap-2">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                                <span>Ajouter</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product Card 2 -->
+                <div class="bg-white rounded-3xl overflow-hidden border border-stone-200/60 shadow-md hover:shadow-xl transition-all duration-300 flex flex-col justify-between group">
+                    <div class="relative bg-gradient-to-br from-red-100 to-rose-200 h-52 flex items-center justify-center p-6">
+                        <span class="text-7xl group-hover:scale-110 transition-transform duration-300">🍉🍓</span>
+                        <div class="absolute top-4 left-4 bg-white/90 backdrop-blur-sm text-brand-800 font-extrabold text-[11px] uppercase tracking-wider py-1 px-3 rounded-full shadow-sm">
+                            Détox & Hydratation
+                        </div>
+                    </div>
+                    <div class="p-6 flex-1 flex flex-col justify-between">
+                        <div>
+                            <h3 class="text-xl font-bold font-serif text-stone-900 mb-2">Salade Rosée Hydratante</h3>
+                            <p class="text-xs text-brand-700 font-semibold mb-3 flex items-center gap-1">
+                                🧪 Lycopène, Hydratation, Vitamine A
+                            </p>
+                            <p class="text-sm text-stone-600 leading-relaxed mb-4">
+                                Composée principalement de pastèque gorgée d'eau, de fraises savoureuses et de suprêmes de pamplemousse rose antioxydant.
+                            </p>
+                        </div>
+                        <div>
+                            <div class="flex items-center justify-between mb-4">
+                                <span class="text-stone-500 text-xs">Moyenne (500g)</span>
+                                <span class="text-xl font-black text-stone-950">2 500 FCFA</span>
+                            </div>
+                            <button onclick="addToCart('Salade Rosée Hydratante', 2500, '🍉🍓')" class="w-full bg-brand-700 hover:bg-brand-800 text-white font-bold py-3 rounded-xl transition-colors flex items-center justify-center gap-2">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                                <span>Ajouter</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product Card 3 -->
+                <div class="bg-white rounded-3xl overflow-hidden border border-stone-200/60 shadow-md hover:shadow-xl transition-all duration-300 flex flex-col justify-between group">
+                    <div class="relative bg-gradient-to-br from-green-100 to-emerald-200 h-52 flex items-center justify-center p-6">
+                        <span class="text-7xl group-hover:scale-110 transition-transform duration-300">🥝🍏🍋</span>
+                        <div class="absolute top-4 left-4 bg-[#065f46] text-white font-extrabold text-[11px] uppercase tracking-wider py-1 px-3 rounded-full shadow-sm">
+                            Défenses Immunitaires
+                        </div>
+                    </div>
+                    <div class="p-6 flex-1 flex flex-col justify-between">
+                        <div>
+                            <h3 class="text-xl font-bold font-serif text-stone-900 mb-2">L'Immunoband anti-rhume</h3>
+                            <p class="text-xs text-brand-700 font-semibold mb-3 flex items-center gap-1">
+                                🧪 Vitamine C Survitaminé & Zingibérol
+                            </p>
+                            <p class="text-sm text-stone-600 leading-relaxed mb-4">
+                                Puissante alliance de kiwis frais, pommes vertes croquantes et tranches d'oranges, subtilement aspergées de jus de gingembre frais râpé.
+                            </p>
+                        </div>
+                        <div>
+                            <div class="flex items-center justify-between mb-4">
+                                <span class="text-stone-500 text-xs">Moyenne (500g)</span>
+                                <span class="text-xl font-black text-stone-950">3 000 FCFA</span>
+                            </div>
+                            <button onclick="addToCart('L\'Immunoband anti-rhume', 3000, '🥝🍏🍋')" class="w-full bg-brand-700 hover:bg-brand-800 text-white font-bold py-3 rounded-xl transition-colors flex items-center justify-center gap-2">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                                <span>Ajouter</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product Card 4 -->
+                <div class="bg-white rounded-3xl overflow-hidden border border-stone-200/60 shadow-md hover:shadow-xl transition-all duration-300 flex flex-col justify-between group">
+                    <div class="relative bg-gradient-to-br from-yellow-100 to-amber-200 h-52 flex items-center justify-center p-6">
+                        <span class="text-7xl group-hover:scale-110 transition-transform duration-300">🥥🥑🍌</span>
+                        <div class="absolute top-4 left-4 bg-white/90 backdrop-blur-sm text-brand-800 font-extrabold text-[11px] uppercase tracking-wider py-1 px-3 rounded-full shadow-sm">
+                            Beauté & Fibres
+                        </div>
+                    </div>
+                    <div class="p-6 flex-1 flex flex-col justify-between">
+                        <div>
+                            <h3 class="text-xl font-bold font-serif text-stone-900 mb-2">Compo Éclat & Fibres</h3>
+                            <p class="text-xs text-brand-700 font-semibold mb-3 flex items-center gap-1">
+                                🧪 Vitamine E, Potassium, Acides Aminés
+                            </p>
+                            <p class="text-sm text-stone-600 leading-relaxed mb-4">
+                                Lamelles de coco frais croquant, avocat onctueux local et banane douce mûre. Riche en bonnes graisses indispensables pour la peau.
+                            </p>
+                        </div>
+                        <div>
+                            <div class="flex items-center justify-between mb-4">
+                                <span class="text-stone-500 text-xs">Moyenne (500g)</span>
+                                <span class="text-xl font-black text-stone-950">3 500 FCFA</span>
+                            </div>
+                            <button onclick="addToCart('Compo Éclat & Fibres', 3500, '🥥🥑🍌')" class="w-full bg-brand-700 hover:bg-brand-800 text-white font-bold py-3 rounded-xl transition-colors flex items-center justify-center gap-2">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                                <span>Ajouter</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Interactive Nutrients Guide -->
+    <section id="bienfaits" class="py-20 md:py-28 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                
+                <!-- Text Area -->
+                <div class="lg:col-span-6 space-y-6">
+                    <h2 class="text-xs font-bold tracking-widest text-brand-700 uppercase">Bienfaits thérapeutiques</h2>
+                    <h3 class="text-3xl md:text-4xl font-serif font-bold text-stone-900">
+                        Votre corps mérite de la vraie nourriture, pas de la chimie de synthèse.
+                    </h3>
+                    <p class="text-stone-600 leading-relaxed">
+                        Chaque variété de fruit apporte une solution ciblée contre l’oxydation de votre organisme induite par le stress urbain et les polluants alimentaires. Découvrez comment nos fruits découpés équilibrent vos besoins nutritionnels quotidiens.
+                    </p>
+
+                    <!-- Accordion Info -->
+                    <div class="space-y-4 pt-4">
+                        <div class="border border-stone-200 rounded-2xl p-4 hover:border-brand-300 transition-colors">
+                            <h4 class="font-bold text-stone-900 flex items-center gap-2">
+                                <span class="text-emerald-600 text-lg">✦</span>
+                                <span>Immunité renforcée (Vitamine C vivante)</span>
+                            </h4>
+                            <p class="text-stone-600 text-sm mt-2 ml-6">
+                                Notre corps ne stocke pas la vitamine C. Une ingestion quotidienne de goyave, d'orange ou d'ananas frais est essentielle pour faire barrière aux infections virales d'Abidjan.
+                            </p>
+                        </div>
+
+                        <div class="border border-stone-200 rounded-2xl p-4 hover:border-brand-300 transition-colors">
+                            <h4 class="font-bold text-stone-900 flex items-center gap-2">
+                                <span class="text-emerald-600 text-lg">✦</span>
+                                <span>Beauté et Éclat de la peau (Antioxydants actifs)</span>
+                            </h4>
+                            <p class="text-stone-600 text-sm mt-2 ml-6">
+                                Les rayons UV et la pollution créent des radicaux libres. La papaye et la mangue fraîches, gorgées de bêtacarotène, restaurent le teint et apportent une élasticité naturelle.
+                            </p>
+                        </div>
+
+                        <div class="border border-stone-200 rounded-2xl p-4 hover:border-brand-300 transition-colors">
+                            <h4 class="font-bold text-stone-900 flex items-center gap-2">
+                                <span class="text-emerald-600 text-lg">✦</span>
+                                <span>Énergie constante sans coup de fatigue</span>
+                            </h4>
+                            <p class="text-stone-600 text-sm mt-2 ml-6">
+                                Contrairement aux boissons énergisantes pleines de sucre industriel qui créent un pic d'insuline suivi d'un crash, le fructose naturel de nos fruits frais est libéré progressivement grâce aux fibres végétales solubles.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Graphic/Promo Area -->
+                <div class="lg:col-span-6 bg-brand-900 text-white rounded-3xl p-8 md:p-12 relative overflow-hidden flex flex-col justify-between shadow-xl min-h-[450px]">
+                    <div class="absolute -top-10 -right-10 w-44 h-44 bg-brand-700 rounded-full blur-2xl opacity-40"></div>
+                    <div class="absolute -bottom-10 -left-10 w-44 h-44 bg-sun-600 rounded-full blur-2xl opacity-40"></div>
+
+                    <div class="z-10">
+                        <span class="text-xs font-bold uppercase tracking-widest text-sun-400">Le Label Qualité</span>
+                        <h4 class="text-2xl md:text-3xl font-serif font-bold mt-2 mb-6">Nos engagements "Longue Vie"</h4>
+                        
+                        <div class="space-y-6">
+                            <div class="flex items-start gap-4">
+                                <div class="w-10 h-10 rounded-lg bg-brand-800 flex items-center justify-center text-xl shrink-0">🥣</div>
+                                <div>
+                                    <h5 class="font-bold text-lg">Hygiène de niveau chirurgical</h5>
+                                    <p class="text-sm text-brand-200 mt-1">Nos plans de travail, nos outils et nos fruits sont désinfectés selon les normes rigoureuses avec des méthodes écologiques.</p>
+                                </div>
+                            </div>
+
+                            <div class="flex items-start gap-4">
+                                <div class="w-10 h-10 rounded-lg bg-brand-800 flex items-center justify-center text-xl shrink-0">🤝</div>
+                                <div>
+                                    <h5 class="font-bold text-lg">Approvisionnement Local</h5>
+                                    <p class="text-sm text-brand-200 mt-1">Nous soutenons l'économie locale ivoirienne en achetant de manière éthique et directe auprès de coopératives agricoles durables.</p>
+                                </div>
+                            </div>
+
+                            <div class="flex items-start gap-4">
+                                <div class="w-10 h-10 rounded-lg bg-brand-800 flex items-center justify-center text-xl shrink-0">🚴</div>
+                                <div>
+                                    <h5 class="font-bold text-lg">Chaîne du Froid Strictement Respectée</h5>
+                                    <p class="text-sm text-brand-200 mt-1">Du découpage au sac de livraison hermétique isotherme, vos fruits conservent leur fraîcheur naturelle de bout en bout.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="pt-8 border-t border-brand-800/80 z-10">
+                        <p class="text-sm text-brand-200 italic">"La nature vous a donné les anticorps, nous les mettons simplement dans une barquette pour vous."</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Trust / Testimonials -->
+    <section class="py-16 bg-[#fcfbf9] border-t border-stone-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h3 class="text-center text-xs font-bold tracking-widest text-stone-500 uppercase mb-8">Ils font confiance à Longue Vie Contact</h3>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Testimonial 1 -->
+                <div class="bg-white p-6 rounded-2xl border border-stone-200/60 shadow-sm">
+                    <p class="text-stone-600 text-sm italic mb-4">"Avec mon rythme de travail à Abidjan, je mangeais mal au bureau. Les barquettes de Longue Vie ont radicalement changé ma pause de midi. Mon transit s'est amélioré !"</p>
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-full bg-amber-100 flex items-center justify-center font-bold text-stone-700">AK</div>
+                        <div>
+                            <h4 class="font-bold text-sm text-stone-900">Awa Koné</h4>
+                            <p class="text-[11px] text-stone-500">Analyste Financière, Plateau</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Testimonial 2 -->
+                <div class="bg-white p-6 rounded-2xl border border-stone-200/60 shadow-sm">
+                    <p class="text-stone-600 text-sm italic mb-4">"L'Immunoband est devenu mon arme fatale contre la climatisation du bureau qui me rendait toujours malade. Des vitamines fraîches chaque matin, merci pour ce service fantastique !"</p>
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-full bg-emerald-100 flex items-center justify-center font-bold text-stone-700">MS</div>
+                        <div>
+                            <h4 class="font-bold text-sm text-stone-900">Marc Soro</h4>
+                            <p class="text-[11px] text-stone-500">Coach Sportif, Cocody</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Testimonial 3 -->
+                <div class="bg-white p-6 rounded-2xl border border-stone-200/60 shadow-sm">
+                    <p class="text-stone-600 text-sm italic mb-4">"Service d'hygiène impeccable. Les fruits ne baignent pas dans l'eau, ils gardent leur croquant. On sent la différence par rapport aux fruits vendus sur le pouce."</p>
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-full bg-orange-100 flex items-center justify-center font-bold text-stone-700">DK</div>
+                        <div>
+                            <h4 class="font-bold text-sm text-stone-900">Dr. Kouamé</h4>
+                            <p class="text-[11px] text-stone-500">Médecin Nutritionniste, Marcory</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call / Contact & Checkout Container -->
+    <section id="contact" class="py-20 md:py-28 bg-[#f5f4ef] border-t border-stone-200/60">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="bg-white rounded-3xl shadow-xl overflow-hidden border border-stone-200">
+                <div class="bg-gradient-to-tr from-brand-800 to-brand-900 text-white p-8 md:p-12 text-center relative">
+                    <h2 class="text-3xl md:text-4xl font-serif font-bold">Passez Votre Commande</h2>
+                    <p class="text-brand-200 mt-2 text-sm md:text-base max-w-lg mx-auto">
+                        Sélectionnez vos produits dans le catalogue ci-dessus ou via l'outil ci-dessous et validez votre livraison.
+                    </p>
+                    <!-- Visual Phone Badge -->
+                    <div class="mt-6 inline-flex items-center gap-3 bg-white/10 backdrop-blur-md px-6 py-3 rounded-full border border-white/20">
+                        <span class="text-sun-400 text-xl">📞</span>
+                        <span class="text-lg md:text-xl font-extrabold tracking-wide text-white">+225 01 01 87 80 25</span>
+                    </div>
+                </div>
+
+                <!-- Custom Interactive Checkout Form -->
+                <form id="order-form" onsubmit="handleFormSubmit(event)" class="p-6 md:p-10 space-y-6">
+                    <div>
+                        <h3 class="text-lg font-bold text-stone-900 mb-4 flex items-center gap-2">
+                            <span class="text-brand-700">❶</span> Votre Panier Actuel
+                        </h3>
+                        <!-- Mini cart preview in form -->
+                        <div id="form-cart-preview" class="border border-stone-200 rounded-2xl p-4 bg-stone-50 space-y-3">
+                            <p class="text-stone-500 text-sm text-center py-4">Votre panier est vide. Veuillez ajouter des fruits dans le catalogue ci-dessus.</p>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <label class="block text-sm font-semibold text-stone-700 mb-2">Votre Nom Complet</label>
+                            <input type="text" id="cust-name" required placeholder="Ex: Amenan Konan" class="w-full px-4 py-3 rounded-xl border border-stone-300 focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-transparent transition-all">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-semibold text-stone-700 mb-2">Votre Téléphone de contact</label>
+                            <input type="tel" id="cust-phone" required placeholder="Ex: 07 00 00 00 00" class="w-full px-4 py-3 rounded-xl border border-stone-300 focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-transparent transition-all">
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-semibold text-stone-700 mb-2">Lieu de livraison (Abidjan)</label>
+                        <input type="text" id="cust-address" required placeholder="Ex: Cocody Angré, Immeuble Horizon" class="w-full px-4 py-3 rounded-xl border border-stone-300 focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-transparent transition-all">
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-semibold text-stone-700 mb-2">Instructions ou préférences particulières</label>
+                        <textarea id="cust-notes" rows="2" placeholder="Ex: Moins de gingembre dans l'Immunoband, livraison avant midi svp..." class="w-full px-4 py-3 rounded-xl border border-stone-300 focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-transparent transition-all"></textarea>
+                    </div>
+
+                    <!-- Checkout button -->
+                    <button type="submit" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-extrabold py-4 rounded-xl shadow-lg transition-all flex items-center justify-center gap-3 text-lg focus:outline-none focus:ring-4 focus:ring-emerald-200">
+                        <svg class="w-6 h-6 fill-current" viewBox="0 0 24 24"><path d="M12.012 2c-5.506 0-9.989 4.478-9.99 9.984a9.96 9.96 0 001.335 4.963L2 22l5.233-1.372a9.912 9.912 0 004.776 1.218h.004c5.505 0 9.988-4.478 9.989-9.984 0-2.669-1.037-5.176-2.922-7.062A9.925 9.925 0 0012.012 2zm5.835 14.165c-.32.451-1.114.828-1.53 1.01-.383.167-.887.311-2.587-.393a10.637 10.637 0 01-4.542-4.014c-.604-.817-1.01-1.815-1.01-2.86 0-1.745.915-2.6 1.246-2.922.25-.245.5-.327.705-.327.167 0 .333.008.479.015.158.007.366-.06.574.442.217.525.74 1.807.807 1.94.067.133.108.291.017.474-.092.183-.175.291-.3.441-.125.15-.267.333-.383.449-.133.133-.275.275-.117.55.159.275.708 1.166 1.517 1.883.633.558 1.166.733 1.483.875.316.141.5.116.683-.092.183-.208.79-.916.999-1.233.208-.316.416-.266.7-.158.283.108 1.8.85 2.108.999.308.15.516.225.59.35.075.125.075.725-.245 1.175z"></path></svg>
+                        <span>Envoyer ma Commande via WhatsApp</span>
+                    </button>
+
+                    <div class="text-center pt-2">
+                        <span class="text-xs text-stone-500">Ou contactez notre service commercial directement par appel au <a href="tel:+2250101878025" class="font-bold text-brand-700 underline">+225 01 01 87 80 25</a></span>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Elegant Slide-over Shopping Cart Panel -->
+    <div id="cart-sidebar" class="fixed inset-0 z-50 hidden transition-opacity duration-300">
+        <div class="absolute inset-0 bg-stone-900/60" onclick="toggleCart()"></div>
+        <div class="absolute right-0 top-0 bottom-0 w-full max-w-md bg-white shadow-2xl flex flex-col justify-between">
+            
+            <!-- Cart Header -->
+            <div class="p-6 border-b border-stone-100 flex items-center justify-between">
+                <div class="flex items-center gap-2">
+                    <svg class="w-6 h-6 text-brand-700" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path></svg>
+                    <span class="font-serif font-bold text-xl text-stone-900">Votre Sélection</span>
+                </div>
+                <button onclick="toggleCart()" class="p-2 rounded-lg hover:bg-stone-100 text-stone-500">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                </button>
+            </div>
+
+            <!-- Cart Body / Items -->
+            <div id="cart-items-container" class="p-6 flex-1 overflow-y-auto space-y-4">
+                <!-- Dynamically filled by JS -->
+                <p class="text-stone-500 text-center py-8">Votre panier de vitamines est actuellement vide.</p>
+            </div>
+
+            <!-- Cart Footer -->
+            <div class="p-6 border-t border-stone-100 bg-stone-50 space-y-4">
+                <div class="flex items-center justify-between font-bold text-stone-900 text-lg">
+                    <span>Total de la commande :</span>
+                    <span id="cart-total-price">0 FCFA</span>
+                </div>
+                
+                <p class="text-xs text-stone-500">La commande sera transférée de manière sécurisée vers notre équipe de livraison d'Abidjan.</p>
+                
+                <div class="flex gap-3">
+                    <button onclick="toggleCart()" class="w-1/2 border border-stone-300 hover:bg-white text-stone-700 font-bold py-3 rounded-xl transition-all">
+                        Continuer
+                    </button>
+                    <a href="#contact" onclick="toggleCart()" class="w-1/2 bg-brand-700 hover:bg-brand-800 text-white font-bold py-3 rounded-xl transition-all text-center flex items-center justify-center">
+                        Valider
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notification System -->
+    <div id="toast" class="fixed bottom-6 left-6 right-6 md:left-auto md:right-6 bg-stone-900 text-white py-3 px-5 rounded-xl shadow-xl flex items-center gap-3 z-50 transform translate-y-24 opacity-0 transition-all duration-300 pointer-events-none">
+        <span id="toast-icon" class="text-xl">⭐</span>
+        <span id="toast-message" class="text-sm font-medium">Panier mis à jour !</span>
+    </div>
+
+    <!-- Sticky Bottom Widget for Fast Call/WhatsApp -->
+    <div class="fixed bottom-6 right-6 z-30 flex flex-col gap-3">
+        <!-- Tel Shortcut -->
+        <a href="tel:+2250101878025" class="w-14 h-14 bg-brand-700 text-white rounded-full flex items-center justify-center shadow-lg hover:scale-110 transition-transform focus:outline-none" title="Appeler pour commander">
+            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20"><path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.3 11.3 0 005.455 5.455l.773-1.548a1 1 0 011.06-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-1C7.79 18 2 12.21 2 6V3z"></path></svg>
+        </a>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-stone-950 text-stone-400 py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-10">
+                
+                <!-- Col 1 -->
+                <div class="space-y-4">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-full bg-brand-700 flex items-center justify-center">
+                            <span class="text-white font-serif font-black text-xl">L</span>
+                        </div>
+                        <span class="text-white font-serif font-bold text-lg">Longue Vie Contact</span>
+                    </div>
+                    <p class="text-sm text-stone-500 leading-relaxed">
+                        Votre partenaire santé au quotidien. Des fruits frais rigoureusement sélectionnés pour dynamiser votre organisme et restaurer l'équilibre vitaminique originel de vos repas.
+                    </p>
+                </div>
+
+                <!-- Col 2 -->
+                <div>
+                    <h4 class="text-white font-semibold mb-4 text-sm tracking-wider uppercase">Notre Carte</h4>
+                    <ul class="space-y-2.5 text-sm">
+                        <li><a href="#produits" class="hover:text-white transition-colors">Énergisant Ivoirien</a></li>
+                        <li><a href="#produits" class="hover:text-white transition-colors">Salade Rosée Hydratante</a></li>
+                        <li><a href="#produits" class="hover:text-white transition-colors">L'Immunoband anti-rhume</a></li>
+                        <li><a href="#produits" class="hover:text-white transition-colors">Compo Éclat & Fibres</a></li>
+                    </ul>
+                </div>
+
+                <!-- Col 3 -->
+                <div>
+                    <h4 class="text-white font-semibold mb-4 text-sm tracking-wider uppercase">Contact Direct</h4>
+                    <ul class="space-y-3 text-sm">
+                        <li class="flex items-center gap-2">
+                            <span>📞</span>
+                            <a href="tel:+2250101878025" class="hover:text-white transition-colors font-bold">+225 01 01 87 80 25</a>
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <span>📍</span>
+                            <span>Abidjan, Côte d'Ivoire</span>
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <span>✉️</span>
+                            <span>contact@longuevie.ci</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Col 4 -->
+                <div>
+                    <h4 class="text-white font-semibold mb-4 text-sm tracking-wider uppercase">Pourquoi nous ?</h4>
+                    <p class="text-sm text-stone-500 leading-relaxed mb-4">
+                        Pas d'additifs chimiques, aucun conservateur, uniquement du vrai fruit sain découpé à la demande pour préserver les enzymes digestives actives.
+                    </p>
+                    <div class="flex items-center gap-3 text-2xl">
+                        <span>🇨🇮</span>
+                        <span>🍍</span>
+                        <span>🥑</span>
+                        <span>🍉</span>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Copyright and legal -->
+            <div class="border-t border-stone-900 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-stone-600">
+                <p>&copy; 2026 Longue Vie Contact. Tous droits réservés. Abidjan, Côte d'Ivoire.</p>
+                <div class="flex gap-6">
+                    <a href="#" class="hover:underline">Mentions légales</a>
+                    <a href="#" class="hover:underline">Politique d'hygiène alimentaire</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Web Application Logic -->
+    <script>
+        // Shopping Cart State Management
+        let cart = [];
+
+        function addToCart(name, price, icon) {
+            const existingItem = cart.find(item => item.name === name);
+            if (existingItem) {
+                existingItem.quantity += 1;
+            } else {
+                cart.push({ name, price, icon, quantity: 1 });
+            }
+            updateCartUI();
+            showToast(`"${name}" ajouté au panier !`, icon);
+        }
+
+        function updateQuantity(name, amount) {
+            const item = cart.find(item => item.name === name);
+            if (!item) return;
+            
+            item.quantity += amount;
+            if (item.quantity <= 0) {
+                cart = cart.filter(i => i.name !== name);
+            }
+            updateCartUI();
+        }
+
+        function removeFromCart(name) {
+            cart = cart.filter(item => item.name !== name);
+            updateCartUI();
+            showToast("Article supprimé de votre sélection", "🗑️");
+        }
+
+        function updateCartUI() {
+            const cartContainer = document.getElementById('cart-items-container');
+            const formCartPreview = document.getElementById('form-cart-preview');
+            const cartBadge = document.getElementById('cart-badge');
+            const cartTotalPrice = document.getElementById('cart-total-price');
+
+            // Total calculations
+            let totalItemsCount = 0;
+            let totalPrice = 0;
+
+            if (cart.length === 0) {
+                cartContainer.innerHTML = `<p class="text-stone-500 text-center py-8">Votre panier de vitamines est actuellement vide.</p>`;
+                formCartPreview.innerHTML = `<p class="text-stone-500 text-sm text-center py-4">Votre panier est vide. Veuillez ajouter des fruits dans le catalogue ci-dessus.</p>`;
+                cartBadge.classList.add('hidden');
+                cartTotalPrice.innerText = `0 FCFA`;
+                return;
+            }
+
+            // Fill sidebar cart
+            let cartHTML = '';
+            let formPreviewHTML = '<ul class="space-y-2">';
+            
+            cart.forEach(item => {
+                totalItemsCount += item.quantity;
+                totalPrice += (item.price * item.quantity);
+
+                cartHTML += `
+                    <div class="flex items-center justify-between p-3.5 bg-stone-50 rounded-2xl border border-stone-100">
+                        <div class="flex items-center gap-3">
+                            <span class="text-3xl">${item.icon}</span>
+                            <div>
+                                <h4 class="font-bold text-stone-900 text-sm leading-tight">${item.name}</h4>
+                                <span class="text-xs text-stone-500">${item.price} FCFA / u</span>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <button onclick="updateQuantity('${item.name}', -1)" class="w-8 h-8 rounded-full bg-white border border-stone-200 flex items-center justify-center font-bold text-stone-600 hover:bg-stone-100 transition-colors">-</button>
+                            <span class="text-sm font-bold w-6 text-center">${item.quantity}</span>
+                            <button onclick="updateQuantity('${item.name}', 1)" class="w-8 h-8 rounded-full bg-white border border-stone-200 flex items-center justify-center font-bold text-stone-600 hover:bg-stone-100 transition-colors">+</button>
+                            <button onclick="removeFromCart('${item.name}')" class="text-red-500 ml-2 hover:text-red-700" title="Supprimer">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path></svg>
+                            </button>
+                        </div>
+                    </div>
+                `;
+
+                formPreviewHTML += `
+                    <li class="flex justify-between items-center text-sm py-1 border-b border-stone-200 last:border-0">
+                        <span class="font-medium text-stone-800">${item.icon} ${item.name} (x${item.quantity})</span>
+                        <span class="font-bold text-stone-900">${item.price * item.quantity} FCFA</span>
+                    </li>
+                `;
+            });
+
+            formPreviewHTML += `
+                <li class="flex justify-between items-center text-sm pt-3 font-extrabold text-stone-950 border-t border-stone-300">
+                    <span>Total Sélection</span>
+                    <span>${totalPrice} FCFA</span>
+                </li>
+            </ul>`;
+
+            cartContainer.innerHTML = cartHTML;
+            formCartPreview.innerHTML = formPreviewHTML;
+
+            // Update badge and prices
+            cartBadge.innerText = totalItemsCount;
+            cartBadge.classList.remove('hidden');
+            cartTotalPrice.innerText = `${totalPrice.toLocaleString('fr-FR')} FCFA`;
+        }
+
+        // Sidebar Toggles
+        function toggleCart() {
+            const sidebar = document.getElementById('cart-sidebar');
+            sidebar.classList.toggle('hidden');
+        }
+
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        }
+
+        // Toast Messages
+        function showToast(message, icon = "⭐") {
+            const toast = document.getElementById('toast');
+            const toastMsg = document.getElementById('toast-message');
+            const toastIcon = document.getElementById('toast-icon');
+
+            toastMsg.innerText = message;
+            toastIcon.innerText = icon;
+
+            toast.classList.remove('translate-y-24', 'opacity-0');
+            toast.classList.add('translate-y-0', 'opacity-100');
+
+            setTimeout(() => {
+                toast.classList.remove('translate-y-0', 'opacity-100');
+                toast.classList.add('translate-y-24', 'opacity-0');
+            }, 3000);
+        }
+
+        // WhatsApp Checkout Logic
+        function handleFormSubmit(event) {
+            event.preventDefault();
+
+            if (cart.length === 0) {
+                showToast("Votre panier est vide. Veuillez y rajouter des fruits !", "⚠️");
+                return;
+            }
+
+            const name = document.getElementById('cust-name').value;
+            const phone = document.getElementById('cust-phone').value;
+            const address = document.getElementById('cust-address').value;
+            const notes = document.getElementById('cust-notes').value;
+
+            // Generate structured WhatsApp Message
+            let itemsText = '';
+            let totalAmount = 0;
+            cart.forEach(item => {
+                itemsText += `- ${item.icon} ${item.name} (Quantité: ${item.quantity}) -> ${item.price * item.quantity} FCFA\n`;
+                totalAmount += item.price * item.quantity;
+            });
+
+            const rawMessage = `Bonjour Longue Vie Contact ! 🌿\nJe souhaite commander une cure de fruits frais découpés :\n\n👤 *Client :* ${name}\n📞 *Téléphone :* ${phone}\n📍 *Livraison :* ${address}\n\n🛒 *Ma sélection :*\n${itemsText}\n💰 *Montant Total :* *${totalAmount} FCFA*\n\n📝 *Notes/Préférences :* ${notes ? notes : 'Aucune'}\n\nMerci de me confirmer la prise en charge de ma livraison !`;
+            
+            const encodedMessage = encodeURIComponent(rawMessage);
+            const whatsappURL = `https://wa.me/2250101878025?text=${encodedMessage}`;
+
+            // Open WhatsApp in a new window/tab
+            window.open(whatsappURL, '_blank');
+        }
+    </script>
+</body>
+</html>
+
+```
